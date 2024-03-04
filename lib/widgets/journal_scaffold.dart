@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:journal_app/pages/journal_entry_form.dart';
+import 'package:journal_app/pages/new_entry.dart';
 import 'package:journal_app/widgets/end_drawer.dart';
 
 class JournalScaffold extends StatelessWidget {
@@ -13,6 +13,7 @@ class JournalScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         actions: [
           Builder(
             builder: (context) => IconButton(
@@ -24,16 +25,16 @@ class JournalScaffold extends StatelessWidget {
           )
         ],
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Center(child: Text(title)),
+        title: Text(title),
       ),
       body: child,
-      endDrawer: Drawer(
+      endDrawer: const Drawer(
         child: EndDrawer(),
       ),
       floatingActionButton: fab
           ? FloatingActionButton(
               onPressed: () => Navigator.of(context)
-                  .pushNamed(JournalEntryFormPage.routeName),
+                  .pushNamed(NewEntryPage.routeName),
               tooltip: 'Add New Journal Entry',
               child: const Icon(Icons.add),
             )

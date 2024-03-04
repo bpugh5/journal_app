@@ -6,16 +6,18 @@ import 'package:journal_app/models/journal_entry.dart';
 import 'package:journal_app/widgets/journal_list.dart';
 import 'package:journal_app/widgets/journal_scaffold.dart';
 
-class JournalEntryListScreen extends StatefulWidget {
-  const JournalEntryListScreen({super.key});
+// This page displays all journal entries
+
+class EntryListScreen extends StatefulWidget {
+  const EntryListScreen({super.key});
 
   static const routeName = '/';
 
   @override
-  State<JournalEntryListScreen> createState() => _JournalEntryListScreenState();
+  State<EntryListScreen> createState() => _EntryListScreenState();
 }
 
-class _JournalEntryListScreenState extends State<JournalEntryListScreen> {
+class _EntryListScreenState extends State<EntryListScreen> {
   Journal? journal;
 
   @override
@@ -26,7 +28,8 @@ class _JournalEntryListScreenState extends State<JournalEntryListScreen> {
 
   void loadJournal() async {
     final DatabaseManager databaseManager = DatabaseManager.getInstance();
-    List<JournalEntry> journalEntries = await JournalEntryDAO.journalEntries(databaseManager: databaseManager);
+    List<JournalEntry> journalEntries =
+        await JournalEntryDAO.journalEntries(databaseManager: databaseManager);
     setState(() {
       journal = Journal(entries: journalEntries);
     });
@@ -44,8 +47,23 @@ class _JournalEntryListScreenState extends State<JournalEntryListScreen> {
           title: journal!.isEmpty() ? 'Welcome' : 'Journal Entries',
           fab: true,
           child: journal!.isEmpty()
-              ? const Placeholder()
+              ? welcomeScreen()
               : JournalList(context: context, entries: journal!.entries));
     }
+  }
+
+  Widget welcomeScreen() {
+    return const Center(
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.edit_document,
+              size: 100,
+            ),
+            Text("Journal")
+          ]),
+    );
   }
 }

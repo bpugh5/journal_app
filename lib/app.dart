@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:journal_app/pages/journal_entry_list.dart';
-import 'package:journal_app/pages/journal_entry_form.dart';
+import 'package:journal_app/pages/entry_list.dart';
+import 'package:journal_app/pages/new_entry.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyApp extends StatefulWidget {
@@ -9,8 +9,8 @@ class MyApp extends StatefulWidget {
   final SharedPreferences preferences;
 
   static final routes = {
-    JournalEntryListScreen.routeName: (context) => const JournalEntryListScreen(),
-    JournalEntryFormPage.routeName: (context) => const JournalEntryFormPage(),
+    EntryListScreen.routeName: (context) => const EntryListScreen(),
+    NewEntryPage.routeName: (context) => const NewEntryPage(),
   };
 
   @override
@@ -18,7 +18,6 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-
   static const LIGHT_MODE_KEY = 'lightMode';
 
   bool get lightMode => widget.preferences.getBool(LIGHT_MODE_KEY) ?? true;
@@ -27,9 +26,11 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Journal',
-      theme: lightMode ? ThemeData.light() : ThemeData.dark(),
+      theme: lightMode
+          ? ThemeData.light()
+          : ThemeData.dark(),
       routes: MyApp.routes,
-      initialRoute: JournalEntryListScreen.routeName,
+      initialRoute: EntryListScreen.routeName,
     );
   }
 
