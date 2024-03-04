@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:journal_app/app.dart';
 import 'package:journal_app/db/database_manager.dart';
-import 'package:sqflite/sqflite.dart';
 
 const SECRET_KEY_PATH = 'assets/schema_1.sql.txt';
 
