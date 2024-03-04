@@ -26,9 +26,7 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Journal',
-      theme: lightMode
-          ? ThemeData.light()
-          : ThemeData.dark(),
+      theme: lightMode ? lightModeTheme() : darkModeTheme(),
       routes: MyApp.routes,
       initialRoute: EntryListScreen.routeName,
     );
@@ -38,5 +36,22 @@ class MyAppState extends State<MyApp> {
     setState(() {
       widget.preferences.setBool(LIGHT_MODE_KEY, value);
     });
+  }
+
+  ThemeData lightModeTheme() {
+    return ThemeData.light().copyWith(
+      primaryColor: Colors.black,
+      colorScheme: const ColorScheme.light().copyWith(
+        primary: Colors.lightBlue[200],
+      ),
+    );
+  }
+
+  ThemeData darkModeTheme() {
+    return ThemeData.dark().copyWith(
+      colorScheme: const ColorScheme.dark().copyWith(
+        primary: Colors.purple[600],
+      ),
+    );
   }
 }

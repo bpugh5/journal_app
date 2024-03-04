@@ -69,8 +69,10 @@ class HorizontalLayout extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(entries[index].title),
-                  subtitle: Text(DateFormat('EEEE, MMMM d, y')
-                      .format(entries[index].dateTime)),
+                  subtitle: Text(
+                    DateFormat('EEEE, MMMM d, y')
+                        .format(entries[index].dateTime),
+                  ),
                 );
               },
             ),

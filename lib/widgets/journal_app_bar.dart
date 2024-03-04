@@ -18,8 +18,7 @@ class JournalAppBar extends StatelessWidget {
           ),
         )
       ],
-      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      title: Center(child: Text(title)),
+      title: Center(child: Text(title, style: const TextStyle(color: Colors.black))),
     );
   }
 }

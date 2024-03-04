@@ -13,6 +13,7 @@ class JournalScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
         centerTitle: true,
         actions: [
           Builder(
@@ -24,7 +25,6 @@ class JournalScaffold extends StatelessWidget {
             ),
           )
         ],
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title),
       ),
       body: child,
@@ -33,9 +33,10 @@ class JournalScaffold extends StatelessWidget {
       ),
       floatingActionButton: fab
           ? FloatingActionButton(
-              onPressed: () => Navigator.of(context)
-                  .pushNamed(NewEntryPage.routeName),
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(NewEntryPage.routeName),
               tooltip: 'Add New Journal Entry',
+              backgroundColor: Theme.of(context).colorScheme.primary,
               child: const Icon(Icons.add),
             )
           : null,

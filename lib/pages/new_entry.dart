@@ -32,7 +32,7 @@ class _NewEntryPageState extends State<NewEntryPage> {
     return Form(
       key: formKey,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -51,21 +51,24 @@ class _NewEntryPageState extends State<NewEntryPage> {
   }
 
   Widget titleTextField() {
-    return TextFormField(
-      decoration: const InputDecoration(
-        labelText: 'Title',
-        border: OutlineInputBorder(),
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: TextFormField(
+        decoration: const InputDecoration(
+          labelText: 'Title',
+          border: OutlineInputBorder(),
+        ),
+        onSaved: (value) {
+          journalEntryValues.title = value;
+        },
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please enter a title';
+          } else {
+            return null;
+          }
+        },
       ),
-      onSaved: (value) {
-        journalEntryValues.title = value;
-      },
-      validator: (value) {
-        if (value!.isEmpty) {
-          return 'Please enter a title';
-        } else {
-          return null;
-        }
-      },
     );
   }
 
@@ -130,9 +133,8 @@ class _NewEntryPageState extends State<NewEntryPage> {
       style: ElevatedButton.styleFrom(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-          backgroundColor: Colors.grey[400],
-          foregroundColor: Theme.of(context).primaryColor
-          ),
+          backgroundColor: Colors.red[100],
+          foregroundColor: Theme.of(context).primaryColor),
       onPressed: () => Navigator.of(context)
           .pushNamedAndRemoveUntil(EntryListScreen.routeName, (route) => false),
       child: const Text('Cancel'),
@@ -143,6 +145,8 @@ class _NewEntryPageState extends State<NewEntryPage> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+        backgroundColor: Colors.green[200],
+        foregroundColor: Theme.of(context).primaryColor
       ),
       onPressed: () async {
         if (formKey.currentState!.validate()) {
